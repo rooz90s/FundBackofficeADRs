@@ -81,7 +81,7 @@ The organization is taked with developing a fund backoffice management system th
         <tr>
           <td>1</td>
           <td>Monolithic</td>
-          <td>Build entire application in a single project that handle all business concerns and processes in a same area. </td>
+          <td>Build entire application in a single project that handle all business concerns and processes. </td>
           <td>
             <ul>
               <li>Consistency</li>
@@ -115,7 +115,7 @@ The organization is taked with developing a fund backoffice management system th
           <td>2</td>
           <td>Microservices</td>
           <td>
-            the Issuing Service will maintain a replicated Bank Account data in a local shadow table. This allows the service to independently verify the eligibility of Bank Account for new Issue requests
+            Devide the business concerns and build atonomous services/projects accordingly that each of them is responsible for handling specific concern and may communicate togather to fulfith the business goal.
           </td>
           <td>
             <ul>
