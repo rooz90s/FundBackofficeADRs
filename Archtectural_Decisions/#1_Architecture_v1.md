@@ -61,9 +61,9 @@
 ## Context
 The organization is taked with developing a fund backoffice management system that is designed to handle complex fund assest operations.Such system includes many business flows and regulations and communications with outter contexts to cover the fund asset management processes.The challenge lies in adopting an archtecture to achieve agility to regulation and flows changes within reliablity and scalability. 
 ## Concerns
-- Fund asset management operation involves **complex business** model
-- In such business domain there may be **frequent regulation changes** force so the system must **be agile to changes**. 
-- **System is vast** and requires many chained processes from different area to achive the Goal.
+- Fund asset management operation involves ***complex business*** model
+- In such business domain there may be ***frequent regulation changes*** force so the system must **be agile to changes**. 
+- ***System is vast*** and requires many chained processes from different area to achive the Goal.
 
 ## Options
 
@@ -84,16 +84,17 @@ The organization is taked with developing a fund backoffice management system th
           <td>Build entire application in a single project that handle all business concerns and processes. </td>
           <td>
             <ul>
-              <li>Consistency</li>
-              <li>Data Accuracy</li>
-              <li>Real Time data</li>
+              <li>Cost efficient in short term</li>
+              <li>Data consistency</li>
+              <li>Availability</li>
+              <li>Maturity in organization</li>
+              <li>Smooth learning curve</li>
             </ul>
           </td>
           <td>
             <ul>
-              <li>Service Dependency</li>
-              <li>Latency</li>
-              <li>Bandwidth Utilization </li>
+              <li>Potential large code base</li>
+              <li>Scalability Challange</li>
             </ul>
           </td>
           <td>
