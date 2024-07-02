@@ -1,4 +1,4 @@
-# #1 Title
+# #1 Architecture Style
  <table>
       <tbody>
         <tr>
@@ -10,15 +10,14 @@
         <tr>
           <th>Version</th>
           <td>
-            1.0
+            1
           </td>
         </tr>
         <tr>
           <th>Stakeholders</th>
           <td>
             <ul>
-              <li>Issuing Service</li>
-              <li>Bank Account Service</li>
+              <li>Fund Backoffice Context</li>
             </ul>
           </td>
         </tr>
@@ -31,7 +30,7 @@
         </tr>
         <tr>
           <th>Due date</th>
-          <td>2024-08-03</td>
+          <td>2023</td>
         </tr>
         <tr>
           <th>Owner</th>
@@ -51,11 +50,8 @@
           </th>
           <td>
               <ul>
-                <li>Mahsa Mesbah</li>
-                <li>Mahsa Mesbah</li>
-                <li>Mahsa Mesbah</li>
-                <li>Mahsa Mesbah</li>
-                <li>Mahsa Mesbah</li>
+                <li>Sajjad Shirazi</li>
+                <li>Saber Zahedian Fard</li>
               </ul>
           </td>
         </tr>
@@ -63,11 +59,11 @@
     </table>
 
 ## Context
-To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file since GitHub Flavored Markdown supports basic HTML. This approach allows you to embed unordered lists directly within a table cell. To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file since GitHub Flavored Markdown supports basic HTML. This approach allows you to embed unordered lists directly within a table cell.
+The organization is taked with developing a fund backoffice management system that is designed to handle complex fund assest operations.Such system includes many business flows and regulations and communications with outter contexts to cover the fund asset management processes.The challenge lies in adopting an archtecture to achieve agility to regulation and flows changes within reliablity and scalability. 
 ## Concerns
-- To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file
-- To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file
-- To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file
+- Fund asset management operation involves **complex business** model
+- In such business domain there may be **frequent regulation changes** force so the system must **be agile to changes**. 
+- **System is vast** and requires many chained processes from different area to achive the Goal.
 
 ## Options
 
@@ -84,8 +80,8 @@ To create a table with list items in one cell using Markdown on GitHub, you can 
         </tr>
         <tr>
           <td>1</td>
-          <td>Verification Via Bank Account Service</td>
-          <td>Inter-Service Communication Between Issuing and Bank Account Services takes place to overcome bank account verification step in process of new Issue Request Submission. The Bank Account Service will be the single source of truth to verify the eligible bank account for Issue process.</td>
+          <td>Monolithic</td>
+          <td>Build entire application in a single project that handle all business concerns and processes in a same area. </td>
           <td>
             <ul>
               <li>Consistency</li>
@@ -117,7 +113,7 @@ To create a table with list items in one cell using Markdown on GitHub, you can 
         </tr>
         <tr>
           <td>2</td>
-          <td>Verification Via Bank Account Shadow Table Within Issuing Service</td>
+          <td>Microservices</td>
           <td>
             the Issuing Service will maintain a replicated Bank Account data in a local shadow table. This allows the service to independently verify the eligibility of Bank Account for new Issue requests
           </td>

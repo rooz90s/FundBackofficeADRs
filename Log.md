@@ -10,7 +10,7 @@
         <tr>
           <th>Version</th>
           <td>
-            1.0
+            1
           </td>
         </tr>
         <tr>
