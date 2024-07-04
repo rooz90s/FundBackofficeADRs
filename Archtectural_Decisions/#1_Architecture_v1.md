@@ -52,6 +52,8 @@
               <ul>
                 <li>Sajjad Shirazi</li>
                 <li>Saber Zahedian Fard</li>
+                <li>Mahsa Mesbah</li>
+                <li>Ardeshir Panahi</li>
               </ul>
           </td>
         </tr>
@@ -87,6 +89,7 @@ The organization is taked with developing a fund backoffice management system th
               <li>Cost efficient in short term</li>
               <li>Data consistency</li>
               <li>Availability</li>
+              <li>Easy testability</li>
               <li>Maturity in organization</li>
               <li>Smooth learning curve</li>
             </ul>
@@ -95,20 +98,20 @@ The organization is taked with developing a fund backoffice management system th
             <ul>
               <li>Potential large code base</li>
               <li>Scalability Challange</li>
+              <li>Maintainibility challange on large code base</li>
             </ul>
           </td>
           <td>
             <ul>
-              <li>Single Source of Truth</li>
-              <li>Immune To Bank Account Data Changes</li>
+              <li>Adopt easily</li>
+              <li>Faster Prototype delivery</li>
+              <li>Organization has strong experience</li>
             </ul>
           </td>
           <td>
             <ul>
-              <li>Single Point of Failure</li>
-              <li>Potential Mesh Communication</li>
-              <li>Potential Network Load </li>
-              <li>Scalability Interdependence</li>
+              <li>Slow adoption of requirement changes</li>
+              <li>Require tight coordination with other responsible teams</li>
             </ul>
           </td>
         </tr>
@@ -116,31 +119,42 @@ The organization is taked with developing a fund backoffice management system th
           <td>2</td>
           <td>Microservices</td>
           <td>
-            Devide the business concerns and build atonomous services/projects accordingly that each of them is responsible for handling specific concern and may communicate togather to fulfith the business goal.
+            Devide the business concerns and build atonomous services/projects accordingly that each of them is responsible for handling specific concern and may communicate togather to fulfill the business goals.
           </td>
           <td>
             <ul>
-              <li>Availability</li>
-              <li>Bandwidth Efficient</li>
-              <li>Autonomy</li>
+              <li>Scalable</li>
+              <li>Smaller code base on each service</li>
+              <li>Independent deployment</li>
             </ul>
           </td>
           <td>
             <ul>
-              <li>Eventual Consistency</li>
-              <li>Complexity of synchronization</li>
+              <li>Consistency Challenge</li>
+              <li>Fragile reliablity</li>
+              <li>Challenging testability</li>
+              <li>In-maturity in Organization</li>
+              <li>Complex inter-service dependencies</li>
+              <li>High lerning curve</li>
+              <li>Expensive</li>
             </ul>
           </td>
           <td>
             <ul>
-              <li>Independent Scalability</li>
-              <li>Independent Issuing Operation</li>
+              <li>Agile to requirement changes</li>
+              <li>Reduce coordinations</li>
+              <li>Independent Scaling</li>
+              <li>Independent development</li>
+              <li>Simpler code mainainability</li>
             </ul>
           </td>
           <td>
             <ul>
-              <li>Stale Data Risks</li>
-              <li>Synchronization Challenges</li>
+              <li>Require complex infrastructure</li>
+              <li>Increases maintenance cost</li>
+              <li>Challenge on recuite experts</li>
+              <li>Challenge on training</li>
+              <li>Challenge on adopting in the organization</li>
             </ul>
           </td>
         </tr>
