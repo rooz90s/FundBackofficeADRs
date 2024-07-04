@@ -162,9 +162,9 @@ The organization is taked with developing a fund backoffice management system th
     </table>
 
 ## Decision Consideration
-- To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file
-- To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file
-- To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file
+- Since the business has high rate of regulation and requirement changes it is crucial to adopt and deliver them soon as possible.
+- Business is vast and it is efficient to manage different concerns of business independently.
+- Organization has desire to invest on such architecture to achieve agility in the market.
 
 ## Conclusion
-To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file since GitHub Flavored Markdown supports basic HTML.
+The Agility to business changes and early delivery is the important key for the business, so organization tends to invest on adopting microservices and its culture in the fund asset managment system.
