@@ -26,7 +26,7 @@
             <strong>Outcome</strong>
           </th>
           <td>
-            <strong>Option 2 </strong>: To Have Independent Shadow Table of Eligible Bank Accounts for issue process Within Issuing Service.</td>
+            <strong>Option 2 </strong>microservices</td>
         </tr>
         <tr>
           <th>Due date</th>
@@ -162,9 +162,9 @@ The organization is taked with developing a fund backoffice management system th
     </table>
 
 ## Decision Consideration
-- Since the business has high rate of regulation and requirement changes it is crucial to adopt and deliver them soon as possible.
-- Business is vast and it is efficient to manage different concerns of business independently.
-- Organization has desire to invest on such architecture to achieve agility in the market.
+- Since the business has ***high rate of regulation and requirement changes*** it is crucial to adopt and deliver them soon as possible.
+- ***Business is vast*** and it is efficient to manage different concerns of business independently.
+- Organization has desire to invest on such architecture to ***achieve agility in the market***.
 
 ## Conclusion
 The Agility to business changes and early delivery is the important key for the business, so organization tends to invest on adopting microservices and its culture in the fund asset managment system.
