@@ -7,8 +7,8 @@ My assigment includes architectural and operational decision records and c4 mode
 |---|------------------|--------------|-------------|-----|
 | 1 | [System Architecture](Archtectural_Decisions/#1_Architecture.md)| 1 | 2023-01-01 | Decided |
 | 2 | [Database](Archtectural_Decisions/#1_Database.md)| 1 | 2023-01-01 | Decided |
-| 3 | [Asynchronous Medium](Archtectural_Decisions/#3_Asynchronous_Communication.md)| 1 | 2023-01-01 | Decided |
-| 4 | [Synchronous Medium](Archtectural_Decisions/#4_Synchronous_Communication.md)| 1 | 2023-01-01 | Decided |
+| 3 | [Asynchronous Communication Medium](Archtectural_Decisions/#3_Asynchronous_Communication.md)| 1 | 2023-01-01 | Decided |
+| 4 | [Synchronous Communication Medium](Archtectural_Decisions/#4_Synchronous_Communication.md)| 1 | 2023-01-01 | Decided |
 
 
 ### Operational Decisions Log
