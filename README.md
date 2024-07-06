@@ -1,5 +1,5 @@
 ## Software Architecture Assignment
-My assigment includes architectural and operational decision records and c4 model diagrams regards to fund backoffice system which is under deveopement by Zigurat team.
+My assigment includes architectural and operational decision records and c4 model diagrams regard to fund backoffice system which is under developement by Zigurat team.
 
 ### Preview Adrs
 please follow https://marketplace.visualstudio.com/items?itemName=bierner.github-markdown-preview to preview markdown md files in Vs code.
