@@ -12,6 +12,7 @@ My assigment includes architectural and operational decision records and c4 mode
 | 5 | Event Schema format| 1 | ---- | --- |
 | 6 | Schema Registry| 1 | ---- | --- |
 | 7 | Event Streaming mechanism| 1 | ---- | --- |
+| 8 | Container Orchestration mechanism| 1 | ---- | --- |
 
 
 ### Operational Decisions Log
