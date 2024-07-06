@@ -9,6 +9,9 @@ My assigment includes architectural and operational decision records and c4 mode
 | 2 | [Database](Archtectural_Decisions/#1_Database.md)| 1 | 2023-01-01 | Decided |
 | 3 | [Asynchronous Communication Medium](Archtectural_Decisions/#3_Asynchronous_Communication.md)| 1 | 2023-01-01 | Decided |
 | 4 | [Synchronous Communication Medium](Archtectural_Decisions/#4_Synchronous_Communication.md)| 1 | 2023-01-01 | Decided |
+| 5 | Event Schema format| 1 | ---- | --- |
+| 6 | Schema Registry| 1 | ---- | --- |
+| 7 | Event Streaming mechanism| 1 | ---- | --- |
 
 
 ### Operational Decisions Log
