@@ -1,4 +1,4 @@
-## Softweare Architecture Assignment
+## Software Architecture Assignment
 My assigment includes architectural and operational decision records and c4 model diagrams regards to fund backoffice system which is under deveopement by Zigurat team.
 
 ### Preview Adrs
