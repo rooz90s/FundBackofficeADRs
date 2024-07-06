@@ -1,0 +1,39 @@
+@startuml
+!include ../../Pumla/C4_Dynamic.puml
+
+!includesub ../../Common/Services.puml!apigateway
+!include ../Services/Services.puml
+
+!includesub ../../Asset/Services/Services.puml!asset_core
+!includesub ../../InvestorPrint/Services/Services.puml!investorprint_projection
+
+
+title Create New Redeem Request
+
+LAYOUT_WITH_LEGEND()
+
+Container(investor, "DUMMY Investor Service", " Not Implemented ", "Dummy Investor Service.")
+Container(fund, "DUMMY Fund Service", " Not Implemented ", "Dummy Fund Service.")
+
+
+Rel_D(apigateway,redemption_processmanager,Create New Redeem Request,HTTP)
+
+
+Rel_U(redemption_processmanager,investor,Get Investor Type ,HTTP)
+Rel_U(redemption_processmanager,asset_core,Get Investor Total Asset ,HTTP)
+Rel_U(redemption_processmanager,fund,Get Fund Restrictions ,HTTP)
+
+Rel_R(redemption_processmanager,redemption_core,Create New Redeem Request.,HTTP)
+Rel_D(redemption_core,redemption_coreDb,Persist New Redeem Request)
+
+
+Rel_R(redemption_core,redemption_projection,New Redeem Request Created Event,EVENT)
+Rel_D(redemption_projection,investor,Get investor Information,HTTP)
+Rel_D(redemption_projection,redemption_projectionDb,Persist New Redeem Request Report)
+
+Rel_R(redemption_core,investorprint_projection,New Redeem Request Created Event,EVENT)
+
+
+
+SHOW_LEGEND()
+@enduml

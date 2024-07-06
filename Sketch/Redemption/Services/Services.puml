@@ -1,0 +1,36 @@
+@startuml
+!include ../../Pumla/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+
+
+
+System_Boundary(redemption,"Redemption Service"){
+    
+    !startsub redemption_processmanager
+    Container(redemption_processmanager, "Redemption Process Manager", " .Net - web Api ", "Coordinator which provides orchestration to required redemption business processes such as gather necessary data and confirmations from other services.", $tags = "microService")
+    !endsub
+    
+    !startsub redemption_core
+    Container(redemption_core, "Redemption Service", " .Net - web Api ", "Redemption Core service that serves redemption relative requests.", $tags = "microService")
+    !endsub
+    
+    !startsub redemption_coreDb
+    ContainerDb(redemption_coreDb, "Redemption Core Database", "MSSQL Relational", "Storage area that includes Redemption Aggregates Tables and also Outbox table for related Integration Business Events.", $tags = "storage")
+    !endsub
+    
+    !startsub redemption_projection
+    Container(redemption_projection, "Redemption Projection", " .Net - web Api ", "An Aggregator service that gathers and aggregates required data to provide and persist Materialized Reports.", $tags = "microService")
+    !endsub
+    
+    !startsub redemption_projectionDb
+    ContainerDb(redemption_projectionDb, "Redemption Projection Database", "MSSQL Relational", "Storage area that includes Report tables to read.", $tags = "storage")
+    !endsub
+
+}
+
+
+
+
+@enduml

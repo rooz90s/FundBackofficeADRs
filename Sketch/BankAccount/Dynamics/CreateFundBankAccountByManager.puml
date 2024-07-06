@@ -1,0 +1,32 @@
+@startuml
+!include ../../Pumla/C4_Dynamic.puml
+
+!includesub ../../Common/Services.puml!apigateway
+!include ../Services/Services.puml
+!includesub ../../Issuing/Services/Services.puml!issuing_core
+!includesub ../../Issuing/Services/Services.puml!issuing_projection
+!includesub ../../InvestorPrint/Services/Services.puml!investorprint_projection
+!includesub ../../Common/ExternalContext.puml!accounting
+
+
+title Openning Bank Account By Manager Deposit
+
+LAYOUT_WITH_LEGEND()
+
+Rel_U(apigateway,bankaccount_processmanager,Submit New none-profit/profit Bank Account By Manager,HTTP)
+Rel_R(bankaccount_processmanager,bankaccount_core,Add New none-profit/profit Bank Account  By Manager,HTTP)
+Rel_D(bankaccount_core,bankaccount_coreDb,store New none-profit/profit Bank Account By Manager)
+Rel_D(bankaccount_core,bankaccount_coreDb,store Deposit Transaction)
+Rel_R(bankaccount_core,bankaccount_projection,Publish none-profit/profit Bank Account By Manager Created,EVENT)
+Rel_D(bankaccount_projection,bankaccount_projectionDb,store New none-profit/profit Bank Account By Manager Report)
+Rel_D(bankaccount_projection,bankaccount_projectionDb,store Deposit Transaction Report)
+
+Rel_U(bankaccount_core,issuing_core,Publish none-profit/profit Bank Account By Manager Created,EVENT)
+Rel_U(bankaccount_core,issuing_projection,Publish none-profit/profit Bank Account By Manager Created,EVENT)
+Rel_U(bankaccount_core,investorprint_projection,Publish none-profit/profit Bank Account By Manager Created,EVENT)
+Rel_L(bankaccount_core,accounting,Publish none-profit/profit Bank Account By Manager Created,EVENT)
+
+
+
+SHOW_LEGEND()
+@enduml

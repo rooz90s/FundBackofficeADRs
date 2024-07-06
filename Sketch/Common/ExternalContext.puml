@@ -1,0 +1,19 @@
+@startuml
+!include ../Pumla/C4_Context.puml
+
+!startsub banksa
+System_Ext(banksa, "Bank-Sa System", "Agah Payment Gateway System")
+!endsub
+
+
+!startsub accounting
+System_Ext(accounting, "Accounting Hub", "Agah Accounting System")
+!endsub
+
+!startsub invest
+System_Ext(invest, "Agah Invest System", "Agah Indirect Investment System")
+!endsub
+
+
+
+@enduml

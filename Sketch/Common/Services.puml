@@ -1,0 +1,28 @@
+@startuml
+!include ../Pumla/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+
+!startsub apigateway
+Container(apigateway, "Fundbackoffice ApiGateway", " .Net - web Api ", "Api Gateway provide forward proxy entry point to fund backoffice microservices context.", $tags = "microService")
+!endsub
+
+!startsub fundbackoffice_ui
+Container(fundbackoffice_ui, "Fund Backoffice Web Application", " Angular ", "Fund Backoffice SPA Webapplication as User Interface to Fundbackoffice System ", $tags = "microService")
+!endsub
+
+!startsub kafka
+Container(kafka, "Event Bus", " Kafka ", "Event Base Media to Transport Integration Events and Perform Event Sourcing Persistence.")
+!endsub
+
+!startsub debezium
+Container(debezium, "Event Streamer", " Debezium ", "Event Streaming Tool between Services Outbox and Kafka Bus. ")
+!endsub
+
+!startsub schemaregistry
+Container(schemaregistry, "Schema Registry", " Schema Registry ", "Centralized Schema storage to manage schema version and SERDES Operations.")
+!endsub
+
+
+@enduml

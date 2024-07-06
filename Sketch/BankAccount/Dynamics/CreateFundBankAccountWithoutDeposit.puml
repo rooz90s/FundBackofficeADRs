@@ -1,0 +1,28 @@
+@startuml
+!include ../../Pumla/C4_Dynamic.puml
+
+!includesub ../../Common/Services.puml!apigateway
+!include ../Services/Services.puml
+!includesub ../../Issuing/Services/Services.puml!issuing_core
+!includesub ../../Issuing/Services/Services.puml!issuing_projection
+!includesub ../../InvestorPrint/Services/Services.puml!investorprint_projection
+
+
+title Create New Fund Bank Account Without Deposit
+
+LAYOUT_WITH_LEGEND()
+
+Rel_U(apigateway,bankaccount_processmanager,Submit New none-profit/profit Bank Account Without Deposit,HTTP)
+Rel_R(bankaccount_processmanager,bankaccount_core,Add New none-profit/profit Bank Account Without Deposit,HTTP)
+Rel_D(bankaccount_core,bankaccount_coreDb,store New none-profit/profit Bank Account Without Deposit)
+Rel_R(bankaccount_core,bankaccount_projection,Publish none-profit/profit Bank Account Created,EVENT)
+Rel_D(bankaccount_projection,bankaccount_projectionDb,store New none-profit/profit Bank Account Without Deposit Report)
+
+Rel_U(bankaccount_core,issuing_core,Publish none-profit/profit Bank Account Created,EVENT)
+Rel_U(bankaccount_core,issuing_projection,Publish none-profit/profit Bank Account Created,EVENT)
+Rel_U(bankaccount_core,investorprint_projection,Publish none-profit/profit Bank Account Created,EVENT)
+
+
+
+SHOW_LEGEND()
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+!include ../../Pumla/C4_Container.puml
+
+
+LAYOUT_WITH_LEGEND()
+
+
+System_Boundary(issuing,"Issuing Service"){
+    
+    !startsub issuing_processmanager
+    Container(issuing_processmanager, "Issuing Process Manager", " .Net - web Api ", "Coordinator which provides orchestration to required issuing business processes such as gather necessary data and confirmations from other services.", $tags = "microService")
+    !endsub
+    
+    !startsub issuing_core
+    Container(issuing_core, "Issuing Service", " .Net - web Api ", "Issuing Core service that serves issuing relative requests.", $tags = "microService")
+    !endsub
+    
+    !startsub issuing_coreDb
+    ContainerDb(issuing_coreDb, "Issuing Core Database", "MSSQL Relational", "Storage area that includes Issuing Aggregates Tables and also Outbox table for related Integration Business Events.", $tags = "storage")
+    !endsub
+    
+    !startsub issuing_projection
+    Container(issuing_projection, "Issuing Projection", " .Net - web Api ", "An Aggregator service that gathers and aggregates required data to provide and persist Materialized Reports.", $tags = "microService")
+    !endsub
+    
+    !startsub issuing_projectionDb
+    ContainerDb(issuing_projectionDb, "Issuing Projection Database", "MSSQL Relational", "Storage area that includes Report tables to read.", $tags = "storage")
+    !endsub
+
+}
+
+
+
+
+@enduml

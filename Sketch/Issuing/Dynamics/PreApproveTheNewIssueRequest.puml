@@ -1,0 +1,29 @@
+@startuml
+!include ../../Pumla/C4_Dynamic.puml
+
+!includesub ../../Common/Services.puml!apigateway
+!include ../Services/Services.puml
+!includesub ../../Common/ExternalContext.puml!accounting
+
+
+title Pre-Approved The New Issue Request
+
+LAYOUT_WITH_LEGEND()
+
+
+
+Rel_R(apigateway,issuing_processmanager,Pre-Approve the Issue Request,HTTP)
+
+
+
+Rel_R(issuing_processmanager,issuing_core,Pre-Approve the Issue Request, HTTP)
+Rel_D(issuing_core,issuing_coreDb,Update Issue request State)
+
+
+
+Rel_R(issuing_core,issuing_projection,New Issue Request Pre-Approved Event, Event)
+Rel_R(issuing_core,accounting,New Issue Request Pre-Approved Event, Event)
+Rel_D(issuing_projection,issuing_projectionDb,Update Issue request State)
+
+SHOW_LEGEND()
+@enduml

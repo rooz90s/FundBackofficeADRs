@@ -51,11 +51,12 @@
           </th>
           <td>
               <ul>
+                <li>Saber Zahediyan Fard</li>
+                <li>Elyas Shirouyeh</li>
+                <li>Ardeshir Panahi</li>
                 <li>Mahsa Mesbah</li>
-                <li>Mahsa Mesbah</li>
-                <li>Mahsa Mesbah</li>
-                <li>Mahsa Mesbah</li>
-                <li>Mahsa Mesbah</li>
+                <li>Rouzbeh Zarandi</li>
+                <li>Mohammad Reza Mehri</li>
               </ul>
           </td>
         </tr>
@@ -63,11 +64,10 @@
     </table>
 
 ## Context
-To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file since GitHub Flavored Markdown supports basic HTML. This approach allows you to embed unordered lists directly within a table cell. To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file since GitHub Flavored Markdown supports basic HTML. This approach allows you to embed unordered lists directly within a table cell.
+In case of submit new Issue request process, the Issuing service requires to verify the fund Bank Account that investor paid to, which force a domain dependency from Issuing service to bank account service. Team Concerns about
 ## Concerns
-- To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file
-- To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file
-- To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file
+- Dependency of issue process to bank account service where if the bank account service is not available, it ***jeopardizes submit new issue Request process*** which is crucial for Business.
+- Since the process ***includes verifying financial transaction*** data, it is very important to work with fresh and UpToDate information in case of verification.
 
 ## Options
 
@@ -151,9 +151,5 @@ To create a table with list items in one cell using Markdown on GitHub, you can 
     </table>
 
 ## Decision Consideration
-- To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file
-- To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file
-- To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file
-
-## Conclusion
-To create a table with list items in one cell using Markdown on GitHub, you can utilize HTML within your Markdown file since GitHub Flavored Markdown supports basic HTML.
+- We considered the Bank Account Service has ***low frequency of changes***.
+- BA team confirm that, there could be a ***support team*** that can handle and overcome the problem of financial transaction to an un authorized fund bank account due to bank account updates projection latency

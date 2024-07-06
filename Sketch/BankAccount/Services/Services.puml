@@ -1,0 +1,34 @@
+@startuml
+!include ../../Pumla/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+
+System_Boundary(bankaccount,"Fund Bank Account"){
+    
+    !startsub bankaccount_processmanager
+    Container(bankaccount_processmanager, "Bank Account Process Manager", " .Net - web Api ", "Coordinator which provides orchestration to required bankaccount business processes such as gather necessary data and confirmations from other services.", $tags = "microService")
+    !endsub
+    
+    !startsub bankaccount_core
+    Container(bankaccount_core, "Bank Account Service", " .Net - web Api ", "Bank Account Core service that serves Bank Account relative requests.", $tags = "microService")
+    !endsub
+    
+    !startsub bankaccount_coreDb
+    ContainerDb(bankaccount_coreDb, "Bank Account Core Database", "MSSQL Relational", "Storage area that includes Bank Account Aggregates Tables and also Outbox table for related Integration Business Events.", $tags = "storage")
+    !endsub
+    
+    !startsub bankaccount_projection
+    Container(bankaccount_projection, "Bank Account Projection", " .Net - web Api ", "An Aggregator service that gathers and aggregates required data to provide and persist Materialized Reports.", $tags = "microService")
+    !endsub
+    
+    !startsub bankaccount_projectionDb
+    ContainerDb(bankaccount_projectionDb, "Bank Account Projection Database", "MSSQL Relational", "Storage area that includes Report tables to read.", $tags = "storage")
+    !endsub
+
+}
+
+
+
+
+@enduml

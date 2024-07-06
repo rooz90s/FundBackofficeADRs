@@ -1,0 +1,36 @@
+@startuml
+!include ../../Pumla/C4_Container.puml
+
+
+LAYOUT_WITH_LEGEND()
+
+System_Boundary(asset,"Asset Service"){
+    
+
+    
+    !startsub asset_processmanager
+    Container(asset_processmanager, "Asset Process Manager", " .Net - web Api ", "Coordinator which provides orchestration to required asset business processes such as gather necessary data and confirmations from other services.", $tags = "microService")
+    !endsub
+    
+    !startsub asset_core
+    Container(asset_core, "Asset Service", " .Net - web Api ", "Asset Core service that serves asset relative requests.", $tags = "microService", $tags = "microService")
+    !endsub
+    
+    !startsub asset_coreDb
+    ContainerDb(asset_coreDb, "Asset Core Database", "MSSQL Relational", "Storage area that includes Asset Aggregates Tables and also Outbox table for related Integration Business Events.", $tags = "microService", $tags = "storage")
+    !endsub
+    
+    !startsub asset_projection
+    Container(asset_projection, "Asset Projection", " .Net - web Api ", "An Aggregator service that gathers and aggregates required data to provide and persist Materialized Reports.", $tags = "microService")
+    !endsub
+    
+    !startsub asset_projectionDb
+    ContainerDb(asset_projectionDb, "Asset Projection Database", "MSSQL Relational", "Storage area that includes Report tables to read.", $tags = "microService", $tags = "storage")
+    !endsub
+
+}
+
+
+
+
+@enduml

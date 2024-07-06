@@ -1,0 +1,17 @@
+@startuml
+!include ../../Pumla/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+
+System_Boundary(investorprint,"Investor Print Projection Service"){
+    !startsub investorprint_projection
+    Container(investorprint_projection, "Investor Prints Projection", " .Net - web Api ", "Projection service that includes investor printable reports.", $tags = "microService")
+    !endsub
+
+}
+
+
+
+
+@enduml

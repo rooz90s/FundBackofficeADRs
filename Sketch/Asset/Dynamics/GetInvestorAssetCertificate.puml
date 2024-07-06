@@ -1,0 +1,20 @@
+@startuml
+!include ../../Pumla/C4_Dynamic.puml
+
+!includesub ../../Common/Services.puml!apigateway
+!includesub ../Services/Services.puml!asset_projection
+
+
+title Print Last Certificate
+
+LAYOUT_WITH_LEGEND()
+
+Container(investor, "DUMMY Investor Service", " Not Implemented ", "Dummy Investor Service.")
+
+
+Rel_D(apigateway,asset_projection,Get Last Asset Certificate,HTTP)
+Rel_D(asset_projection,investor,Get Investor Info,HTTP)
+Rel_D(asset_projection,asset_projection,Aggregate responses and generate flat response)
+
+
+@enduml

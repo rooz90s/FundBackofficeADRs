@@ -1,0 +1,48 @@
+@startuml
+!include ../../Pumla/C4_Dynamic.puml
+
+!includesub ../../Common/Services.puml!apigateway
+!include ../Services/Services.puml
+
+!include ../../Asset/Services/Services.puml
+
+title Approve and PrePay Redeem Request
+
+LAYOUT_WITH_LEGEND()
+
+
+
+Rel_D(apigateway,redemption_processmanager,Approve Redeem Request,HTTP)
+
+Rel_R(redemption_processmanager,redemption_core,Approve Redeem Request.,HTTP)
+Rel_D(redemption_core,redemption_coreDb,Update Redeem Request State to Approved)
+
+
+Rel_R(redemption_core,redemption_projection,Redeem Request Approved Event,EVENT)
+
+Rel_R(redemption_core,asset_processmanager,Redeem Request Approved Event,EVENT)
+
+
+Rel_D(redemption_projection,redemption_projectionDb,Update Redeem Request State to Approved)
+
+
+Rel_R(asset_processmanager,asset_core,Calculate Prepayment and Reserve Units to Redeem,HTTP)
+
+Rel_D(asset_core,asset_coreDb,Update Investor Asset and Add Redeem Record)
+
+Rel_R(asset_core,asset_projection,Asset Prepaid Event,EVENT)
+
+
+Rel_D(asset_projection,asset_projectionDb,Update Investor Asset)
+
+Rel_R(asset_core,redemption_processmanager,Asset Prepaid Event,EVENT)
+
+Rel_R(redemption_processmanager,redemption_core,Freeze Request,HTTP)
+Rel_D(redemption_core,redemption_coreDb,Update Redeem Request State to Frozen)
+
+Rel_R(redemption_core,redemption_projection,Redeem Request Frozen Event,EVENT)
+Rel_D(redemption_projection,redemption_projectionDb,Update Redeem Request Report to Frozen)
+
+
+SHOW_LEGEND()
+@enduml

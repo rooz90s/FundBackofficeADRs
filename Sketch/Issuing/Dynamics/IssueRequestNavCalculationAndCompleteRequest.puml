@@ -1,0 +1,63 @@
+@startuml
+!include ../../Pumla/C4_Dynamic.puml
+
+
+!include ../Services/Services.puml
+!include ../../Asset/Services/Services.puml
+!includesub ../../Common/ExternalContext.puml!accounting
+!includesub ../../InvestorPrint/Services/Services.puml!investorprint_projection
+
+
+title Issue request Calculation By Issue NAV and Complete Request
+
+LAYOUT_WITH_LEGEND()
+
+Container(nav, "DUMMY NAV Service", " Not Implemented ", "Dummy NAV Service that Yields Calculated NAV.")
+Container(investor, "DUMMY Investor Service", " Not Implemented ", "Dummy Investor Service.")
+Container(fund, "DUMMY Fund Service", " Not Implemented ", "Dummy Fund Service.")
+
+
+Rel_R(nav,issuing_processmanager,Today s Issue NAV Calculated Event,EVENT)
+
+Rel_R(issuing_processmanager,issuing_core,Prepare Approved Issue Requests with today Issue Date, HTTP)
+Rel_D(issuing_core,issuing_coreDb,Update selected Issue requests State to Calculating)
+
+
+Rel_R(issuing_core,issuing_projection, Issue Request Calculation Prepaid Event, EVENT)
+
+Rel_R(issuing_core,asset_processmanager,Issue Request Calculation Prepaid Event, EVENT)
+
+
+Rel_D(issuing_projection,issuing_projectionDb,Update Issue request State to Calculating)
+
+Rel_R(asset_processmanager,investor, Get investor type, HTTP)
+Rel_R(asset_processmanager,fund, Get fund Restriction, HTTP)
+
+Rel_R(asset_processmanager,asset_core, Increase Ordinary Investor Asset HTTP)
+
+Rel_D(asset_core,asset_coreDb, Add Asset for the Investor )
+
+Rel_R(asset_core,asset_projection, Asset Increased Event, EVENT)
+Rel_R(asset_core,accounting, Asset Increased Event, EVENT)
+Rel_R(asset_core,investorprint_projection, Asset Increased Event, EVENT)
+
+
+
+Rel_R(asset_projection,investor, Get Investor Information, HTTP)
+
+Rel_D(asset_projection,asset_projectionDb, Update Investor Asset)
+
+Rel_R(asset_core,issuing_processmanager, Asset Increased Event, EVENT)
+
+Rel_R(issuing_processmanager,issuing_core, Complete issue Request, HTTP)
+
+Rel_D(issuing_core,issuing_coreDb, Update Issue requests State to Completed)
+
+Rel_R(issuing_core,issuing_projection, Issue Request Completed Event, EVENT)
+Rel_R(issuing_core,investorprint_projection, Issue Request Completed Event, EVENT)
+
+Rel_D(issuing_projection,issuing_projectionDb,Update Issue request State to Completed)
+
+
+SHOW_LEGEND()
+@enduml

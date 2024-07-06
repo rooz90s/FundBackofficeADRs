@@ -1,0 +1,10 @@
+@startuml
+!include ../Pumla/C4_Container.puml
+
+
+!startsub landing
+System_Ext(landing, "Landing Service", "Api Gateway that provides authorization and forward proxy", $tags = "microService")
+!endsub
+
+
+@enduml

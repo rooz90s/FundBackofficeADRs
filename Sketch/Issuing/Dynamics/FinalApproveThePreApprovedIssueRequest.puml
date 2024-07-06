@@ -1,0 +1,20 @@
+@startuml
+!include ../../Pumla/C4_Dynamic.puml
+
+!includesub ../../Common/Services.puml!apigateway
+!include ../Services/Services.puml
+
+title Approve The Pre-Approved Issue Request
+
+LAYOUT_WITH_LEGEND()
+
+Rel_R(apigateway,issuing_processmanager,Approve the Issue Request,HTTP)
+
+Rel_R(issuing_processmanager,issuing_core,Approve the Issue Request, HTTP)
+Rel_D(issuing_core,issuing_coreDb,Update Issue request State)
+
+Rel_R(issuing_core,issuing_projection,Pre-Approved Issue Request Approved Event, Event)
+Rel_D(issuing_projection,issuing_projectionDb,Update Issue request State)
+
+SHOW_LEGEND()
+@enduml

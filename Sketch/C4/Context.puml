@@ -1,0 +1,30 @@
+@startuml
+
+!include ../Pumla/C4_Context.puml
+!include ../Pumla/C4_Container.puml
+!include ../Common/ExternalContext.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Context diagram for Fund Backoffice System
+
+
+Person(user_backoffice, "Backoffice Operator", "User Who Operates and Manages Fund Assets.")
+Person_Ext(user_investor, "Investor", "User Who is An Individual / Legal Investor that manage own Assets.")
+
+System(backoffice, "Fund Backoffice System ","Provide set of facilities aim to operate and manage Investment Funds Asset")
+
+
+Rel(user_backoffice, backoffice, "View And Manage Investor Requests, Fund Asset. ")
+
+Rel_R(backoffice, banksa, "Fund payment Requests")
+
+Rel(user_investor, invest, "Perform Issue And Redeem Action on Funds")
+
+Rel_R(invest, backoffice, "View And Manage Investor Requests, Fund Asset. ")
+
+Rel(backoffice,accounting,"Request to Submit Accounting Logs And Articles")
+Rel(accounting , backoffice,"View Back Office Accounting Articles and Logs")
+
+
+@enduml

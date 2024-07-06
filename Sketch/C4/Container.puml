@@ -1,0 +1,148 @@
+@startuml
+scale 2000*1100
+skinparam dpi 300
+
+!include ../Pumla/C4_Container.puml
+
+
+!include ../Asset/Services/Services.puml
+!include ../Issuing/Services/Services.puml
+!include ../Redemption/Services/Services.puml
+!include ../BankAccount/Services/Services.puml
+!include ../InvestorPrint/Services/Services.puml
+
+!includesub ../Common/ExternalContainer.puml!landing
+!includesub ../Common/ExternalContext.puml!accounting
+!include ../Common/Services.puml
+
+SHOW_PERSON_OUTLINE()
+
+Person(user_backoffice, "Backoffice Operator", "User Who Operates and Manages Fund Assets.")
+
+'DummY Services
+Container(nav, "DUMMY NAV Service", " Not Implemented ", "Dummy NAV Service that Yields Calculated NAV.")
+Container(investor, "DUMMY Investor Service", " Not Implemented ", "Dummy Investor Service.")
+Container(fund, "DUMMY Fund Service", " Not Implemented ", "Dummy Fund Service.")
+
+Container(filemanager, "File Manager Service", ".Net - Web Api", "Repository to store backoffice files")
+
+
+Rel_D(user_backoffice, fundbackoffice_ui, "Perform Fund Asset Management Actions",HTTP)
+Rel_R(fundbackoffice_ui, landing, "Authorize and Forwared Requests",HTTP)
+Rel_D(landing, apigateway, "Authorize and Forwared Requests",HTTP)
+
+
+Rel_D(apigateway, filemanager, "Store files temporary on submit",HTTP)
+Rel_D(user_backoffice, accounting, "View Accounting Articles and Log",HTTP)
+
+
+'-------------- Issuing Service
+Rel_D(apigateway, issuing_processmanager, "Submit and Manage Issue Requests",HTTP)
+Rel_D(apigateway, issuing_projection, "View Issuing Data and reports",HTTP)
+Rel(issuing_processmanager, issuing_core, "Coordinate and Route Requests",HTTP)
+Rel(issuing_processmanager, filemanager, "Confirm to store relative files permanently",HTTP)
+Rel_D(issuing_core, issuing_coreDb, "Store Aggregates and OutBoxing")
+Rel_D(issuing_projection, issuing_projectionDb, "Store Materialized Data")
+Rel_U(issuing_core, investorprint_projection, "Project Issue Request",EVENT)
+
+
+Rel_U(debezium,issuing_coreDb,  "Catch Event data from OutBox")
+Rel_D( issuing_projection,kafka , "Consume Event",EVENT)
+Rel_D( issuing_projection,kafka , "Consume Event",EVENT)
+Rel_D( issuing_processmanager,kafka , "Consume Event",EVENT)
+Rel_D( issuing_processmanager,schemaregistry , "Read Schema to deserialize",HTTP)
+Rel_D( issuing_projection,schemaregistry , "Read Schema to deserialize",HTTP)
+Rel_D( issuing_core,schemaregistry , "Read / update Schema to deserialize",HTTP)
+
+
+Rel(issuing_processmanager, investor, "Verify Investor",HTTP)
+
+
+Rel(issuing_projection, investor, "Get Investor information",HTTP)
+
+Rel_U(issuing_core, accounting, "Provide Accounting Articles",EVENT)
+
+Rel_U(issuing_core, bankaccount_processmanager, "Provide Bank Account Receipt Transaction",EVENT)
+
+
+
+'-------------- Redemption Service
+Rel_D(apigateway, redemption_processmanager, "View Issuing Data and reports",HTTP)
+Rel(redemption_processmanager, asset_core, "Get Investor Available Units",HTTP)
+Rel_D(apigateway, redemption_projection, "View Issuing Data and reports",HTTP)
+Rel(redemption_processmanager, redemption_core, "Coordinate and Route Requests",HTTP)
+Rel_D(redemption_core, redemption_coreDb, "Store Aggregates and OutBoxing")
+Rel_D(redemption_projection, redemption_projectionDb, "Store Materialized Data")
+Rel_U(redemption_core, investorprint_projection, "Project Redeem Request",EVENT)
+
+Rel_U( debezium, redemption_coreDb,"Catch Event data from OutBox")
+Rel_D( redemption_projection,kafka , "Consume Event",EVENT)
+Rel_D( redemption_processmanager,kafka , "Consume Event",EVENT)
+Rel_D( redemption_processmanager,schemaregistry , "Read Schema to deserialize",HTTP)
+Rel_D( redemption_projection,schemaregistry , "Read Schema to deserialize",HTTP)
+Rel_D( redemption_core,schemaregistry , "Read / update Schema to deserialize",HTTP)
+
+
+Rel(redemption_processmanager, investor, "Get Investor information",HTTP)
+Rel(redemption_processmanager, fund, "Get Fund information",HTTP)
+
+Rel(redemption_projection, investor, "Get Investor information",HTTP)
+
+
+'-------------- Asset Service
+Rel_D(apigateway, asset_processmanager, "View Issuing Data and reports",HTTP)
+Rel_D(apigateway, asset_projection, "View Issuing Data and reports",HTTP)
+Rel(asset_processmanager, asset_core, "Coordinate and Route Requests",HTTP)
+Rel_D(asset_core, asset_coreDb, "Store Aggregates and OutBoxing")
+Rel_D(asset_projection, asset_projectionDb, "Store Materialized Data")
+
+Rel_U(debezium, asset_coreDb, "Catch Event data from OutBox")
+Rel_D( asset_projection,kafka , "Consume Event",EVENT)
+Rel_D( asset_processmanager,kafka , "Consume Event",EVENT)
+Rel_D( asset_processmanager,schemaregistry , "Read Schema to deserialize",HTTP)
+Rel_D( asset_projection,schemaregistry , "Read Schema to deserialize",HTTP)
+Rel_D( asset_core,schemaregistry , "Read / update Schema to deserialize",HTTP)
+
+Rel_U(asset_core, investorprint_projection, "Project Investor Asset",EVENT)
+
+
+Rel(asset_processmanager, investor, "Get Investor information",HTTP)
+
+Rel(asset_projection, investor, "Get Investor information",HTTP)
+
+Rel_U(asset_core, accounting, "Provide Accounting Articles",EVENT)
+
+
+'-------------- Bank Account Service
+Rel_D(apigateway, bankaccount_processmanager, "View Issuing Data and reports",HTTP)
+Rel_D(apigateway, bankaccount_projection, "View Issuing Data and reports",HTTP)
+Rel(bankaccount_processmanager, bankaccount_core, "Coordinate and Route Requests",HTTP)
+Rel_D(bankaccount_core, bankaccount_coreDb, "Store Aggregates and OutBoxing")
+Rel_R(bankaccount_core, issuing_core, "Duplicate Bank Accounts",EVENT)
+Rel_R(bankaccount_core, issuing_projection, "Duplicate Bank Accounts",EVENT)
+Rel_U(bankaccount_core, investorprint_projection, "Duplicate Bank Accounts",EVENT)
+Rel_D(bankaccount_projection, bankaccount_projectionDb, "Store Materialized Data")
+
+Rel_U( debezium, bankaccount_coreDb,"Catch Event data from OutBox")
+Rel_D( bankaccount_projection,kafka , "Consume Event",EVENT)
+Rel_D( bankaccount_processmanager,kafka , "Consume Event",EVENT)
+Rel_D( bankaccount_processmanager,schemaregistry , "Read Schema to deserialize",HTTP)
+Rel_D( bankaccount_projection,schemaregistry , "Read Schema to deserialize",HTTP)
+Rel_D( bankaccount_core,schemaregistry , "Read / update Schema to deserialize",HTTP)
+
+Rel(debezium, kafka, "Publish Events")
+Rel(nav, kafka, "Publish NAV Calculated Event")
+
+Rel_U(bankaccount_core, accounting, "Provide Accounting Articles",EVENT)
+
+
+'-------------- investor Prints Service
+Rel_D(apigateway, investorprint_projection, "View Investor Printable Documents",HTTP)
+
+
+
+
+
+SHOW_LEGEND()
+
+@enduml

@@ -1,0 +1,43 @@
+@startuml
+!include ../../Pumla/C4_Dynamic.puml
+
+!includesub ../../Common/Services.puml!apigateway
+!include ../Services/Services.puml
+!includesub ../../InvestorPrint/Services/Services.puml!investorprint_projection
+!includesub ../../Common/ExternalContext.puml!accounting
+
+
+
+title Create New Bank Receipt Issue Request via backoffice channel(Cash payment)
+
+LAYOUT_WITH_LEGEND()
+
+Person(user_backoffice, "Backoffice Operator", "User Who Operates and Manages Fund Assets.")
+Container(filemanager, "File Manager Service", ".Net - Web Api", "Repository to store backoffice files")
+
+
+Container(investor, "DUMMY Investor Service", " Not Implemented ", "Dummy Investor Service.")
+
+Rel_U(user_backoffice,apigateway,Submit New Issue Request,HTTP)
+
+
+Rel_R(apigateway,issuing_processmanager,Create New Issue Request.,HTTP)
+
+Rel_U(issuing_processmanager,investor,Verify investor and confirm Agreements, HTTP)
+
+Rel_R(issuing_processmanager,issuing_core,Create New Issue request, HTTP)
+
+Rel_D(issuing_core,issuing_coreDb,Confirm Fund Bank Account Legitimacy that Request Paid to)
+
+Rel_D(issuing_core,issuing_coreDb,Persist New Pre-Approved Issue request)
+
+Rel_R(issuing_core,issuing_projection,New Pre-Approved Issue Request By Officer Created Event, Event)
+Rel_U(issuing_core,investorprint_projection,New Pre-Approved Issue Request By Officer Created Event, Event)
+Rel_U(issuing_core,accounting,New Pre-Approved Issue Request By Officer Created Event, Event)
+
+Rel_D(issuing_core,filemanager,Pre-Approved Issue Request Created By Officer Event (store files permanently)), Event)
+Rel_D(issuing_projection,investor,Get investor Information,HTTP)
+Rel_D(issuing_projection,issuing_projectionDb,Persist Pre-Approved Issue request Report)
+
+SHOW_LEGEND()
+@enduml
