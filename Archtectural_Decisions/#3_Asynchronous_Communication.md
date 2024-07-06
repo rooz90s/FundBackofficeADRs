@@ -1,4 +1,4 @@
-# #4 Asynchronous Communication Media
+# #4 Asynchronous Communication Medium
  <table>
       <tbody>
         <tr>
@@ -62,7 +62,7 @@
     </table>
 
 ## Context
-We have to select a media for our asynchronous communication between services.
+We have to select a medium for our asynchronous communication between services.
 ## Concerns
 - We need ***secure*** communication.
 
