@@ -64,7 +64,9 @@
 ## Context
 We have to select a medium for our asynchronous communication between services.
 ## Concerns
-- We need ***secure*** communication.
+- We need to ***decouple services*** as mutch as possible.
+- It is important to consider ***resiliency***. 
+- the system may ***produce large number of messages***.
 
 ## Options
 
