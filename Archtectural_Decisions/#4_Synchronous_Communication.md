@@ -1,4 +1,4 @@
-# #4 Synchronous Communication Media
+# #4 Synchronous Communication Medium
  <table>
       <tbody>
         <tr>
@@ -62,7 +62,7 @@
     </table>
 
 ## Context
-We have to select a media for our synchronous communication between services where immediate response is needed.
+We have to select a medium for our synchronous communication between services where immediate response is needed.
 ## Concerns
 - We need ***secure*** communication.
 - It should be ***adoptable*** in Organization.
@@ -147,8 +147,8 @@ We have to select a media for our synchronous communication between services whe
     </table>
 
 ## Decision Consideration
-- It is very important to ***easily adopt*** the communication media with ***less effort***.
-- It is important to have communication media which is ***well known by other contaext*** in case of ***broad communication***.
+- It is very important to ***easily adopt*** the communication medium with ***less effort***.
+- It is important to have communication medium which is ***well known by other contaext*** in case of ***broad communication***.
 
 ## Conclusion
 The http RESTful can be adopt with the system easily with less effort.
